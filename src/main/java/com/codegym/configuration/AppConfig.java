@@ -1,5 +1,11 @@
 package com.codegym.configuration;
 
+import com.codegym.service.ProducerService;
+import com.codegym.service.ProductService;
+import com.codegym.service.TypeService;
+import com.codegym.service.impl.ProducerServiceImpl;
+import com.codegym.service.impl.ProductServiceImpl;
+import com.codegym.service.impl.TypeServiceImpl;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -42,6 +48,21 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
+    }
+
+    @Bean
+    public ProductService productService() {
+        return new ProductServiceImpl();
+    }
+
+    @Bean
+    public ProducerService producerService() {
+        return new ProducerServiceImpl();
+    }
+
+    @Bean
+    public TypeService typeService() {
+        return new TypeServiceImpl();
     }
 
     //Thymeleaf Configuration
