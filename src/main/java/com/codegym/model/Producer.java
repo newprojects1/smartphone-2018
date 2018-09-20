@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "producters")
+@Table(name = "producers")
 public class Producer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
