@@ -21,6 +21,8 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    private String image;
+
     private int memory;
 
     private int capacity;
@@ -79,5 +81,13 @@ public class Product {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
