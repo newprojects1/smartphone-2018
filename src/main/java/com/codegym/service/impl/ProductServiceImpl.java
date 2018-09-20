@@ -4,6 +4,8 @@ import com.codegym.model.Product;
 import com.codegym.repository.ProductRepository;
 import com.codegym.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public class ProductServiceImpl implements ProductService {
     @Autowired
@@ -27,5 +29,10 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public void remove(Long id) {
         productRepository.delete(id);
+    }
+
+    @Override
+    public Page<Product> findAllByNameContainingOrCodeContainingOrProducer(String name, String code, String producer, Pageable pageable) {
+        return productRepository.findAllByNameContainingOrCodeContainingOrProducer(name, code, producer, pageable);
     }
 }
