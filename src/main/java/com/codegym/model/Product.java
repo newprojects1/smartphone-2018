@@ -9,6 +9,8 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    private String code;
+
     private String name;
 
     @ManyToOne
@@ -69,5 +71,13 @@ public class Product {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 }
