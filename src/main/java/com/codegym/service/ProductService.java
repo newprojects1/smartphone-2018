@@ -13,5 +13,7 @@ public interface ProductService {
 
     void remove(Long id);
 
+    Page<Product> findAll(Pageable pageable);
+
     Page<Product> findAllByNameContainingOrCodeContainingOrProducer(String name, String code, String producer, Pageable pageable);
 }
