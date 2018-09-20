@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "types")
-public class Type {
+@Table(name = "categories")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,10 +15,10 @@ public class Type {
     @OneToMany(targetEntity = Product.class)
     private List<Product> products;
 
-    public Type() {
+    public Category() {
     }
 
-    public Type(String name, List<Product> products) {
+    public Category(String name, List<Product> products) {
         this.name = name;
         this.products = products;
     }

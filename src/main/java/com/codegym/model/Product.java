@@ -18,8 +18,8 @@ public class Product {
     private Producer producer;
 
     @ManyToOne
-    @JoinColumn(name = "type_id")
-    private Type type;
+    @JoinColumn(name = "category_id")
+    private Category category;
 
     private int memory;
 
@@ -49,12 +49,12 @@ public class Product {
         this.producer = producer;
     }
 
-    public Type getType() {
-        return type;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setType(Type type) {
-        this.type = type;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public int getMemory() {
