@@ -6,6 +6,7 @@ import com.codegym.service.CategoryService;
 import com.codegym.service.impl.CategoryServiceImpl;
 import com.codegym.service.impl.ProducerServiceImpl;
 import com.codegym.service.impl.ProductServiceImpl;
+import com.codegym.utils.StorageUtils;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -22,7 +23,9 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.spring4.SpringTemplateEngine;
@@ -67,7 +70,7 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
 
     //Thymeleaf Configuration
     @Bean
-    public SpringResourceTemplateResolver templateResolver(){
+    public SpringResourceTemplateResolver templateResolver() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setApplicationContext(applicationContext);
         templateResolver.setPrefix("/WEB-INF/");
@@ -77,14 +80,14 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     @Bean
-    public TemplateEngine templateEngine(){
+    public TemplateEngine templateEngine() {
         TemplateEngine templateEngine = new SpringTemplateEngine();
         templateEngine.setTemplateResolver(templateResolver());
         return templateEngine;
     }
 
     @Bean
-    public ThymeleafViewResolver viewResolver(){
+    public ThymeleafViewResolver viewResolver() {
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         return viewResolver;
@@ -109,17 +112,17 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
     }
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl("jdbc:mysql://localhost:3306/phone");
-        dataSource.setUsername( "root" );
-        dataSource.setPassword( "Hn0912388240" );
+        dataSource.setUsername("root");
+        dataSource.setPassword("Hn0912388240");
         return dataSource;
     }
 
     @Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf){
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(emf);
         return transactionManager;
@@ -130,5 +133,23 @@ public class AppConfig extends WebMvcConfigurerAdapter implements ApplicationCon
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
         return properties;
+    }
+
+    //upload file and add boostrap
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry
+                .addResourceHandler("/resources/**")
+                .addResourceLocations("/resources/");
+        registry
+                .addResourceHandler("/features/**")
+                .addResourceLocations("file:" + StorageUtils.FEATURE_LOCATION + "/");
+    }
+
+    @Bean
+    public CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSizePerFile(10000000);
+        return multipartResolver;
     }
 }
