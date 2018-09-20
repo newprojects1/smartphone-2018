@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -49,6 +50,25 @@ public class ProductController {
         }
         ModelAndView modelAndView1 = new ModelAndView("/product/list");
         modelAndView1.addObject("products", products);
+        return modelAndView1;
+    }
+
+    //    create
+    @GetMapping("/create-product")
+    public ModelAndView showCreateForm() {
+        ModelAndView modelAndView1 = new ModelAndView("/product/create");
+        modelAndView1.addObject("product", new Product());
+        return modelAndView1;
+    }
+
+    @PostMapping("/create-product")
+    public ModelAndView saveProduct(@ModelAttribute("product") Product product) {
+        productService.save(product);
+        product.setCode("CG-" + product.getProducer() + "-" + product.getId());
+        productService.save(product);
+        ModelAndView modelAndView1 = new ModelAndView("/product/create");
+        modelAndView1.addObject("product", new Product());
+        modelAndView1.addObject("message", "New customer created successfully");
         return modelAndView1;
     }
 }
