@@ -29,6 +29,16 @@ public class Product {
 
     private int quantity;
 
+    private String detail;
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
     public int getQuantity() {
         return quantity;
     }
