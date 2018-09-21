@@ -93,7 +93,7 @@ public class ProductController {
         }
 
         modelAndView1.addObject("productForm", new ProductForm());
-        modelAndView1.addObject("message", "New customer created successfully");
+        modelAndView1.addObject("message", "New product created successfully");
         return modelAndView1;
     }
 }
