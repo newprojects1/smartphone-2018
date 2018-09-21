@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>PRODUCT LIST</title>
+    <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+    <h1>PRODUCT LIST</h1>
+    <a href="/create-product">Add new product</a>
+    <form>
+        <input name="s" type="text"/>
+        <input type="submit" value="search">
+    </form>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Product Code</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Memory</th>
+            <th>Capacity</th>
+            <th>Producer</th>
+            <th>Thumbnail</th>
+            <th>Stock</th>
+            <th>Manager Product</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="product:${products}">
+            <tr>
+                <td th:text="${product.code}"></td>
+                <td th:text="${product.name}"></td>
+                <td th:text="${product.category.name}"></td>
+                <td th:text="${product.memory}"></td>
+                <td th:text="${product.capacity}"></td>
+                <td th:text="${product.producer.name}"></td>
+                <td th:text="${product.image}"></td>
+                <td th:text="${product.quantity}"></td>
+                <td>
+                    <a th:href="@{/edit-product/__${product.id}__ }" class="btn btn-info">Edit</a>
+                    <a th:href="@{/delete-product/__${product.id}__ }" class="btn btn-info">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+    <div>
+        <a th:href="@{'/products'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+        <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+        <a th:href="@{'/products'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+    </div>
+</div>
+</body>
+</html>
