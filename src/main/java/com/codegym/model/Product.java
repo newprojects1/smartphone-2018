@@ -23,6 +23,8 @@ public class Product {
 
     private String image;
 
+    private double price;
+
     private int memory;
 
     private int capacity;
@@ -109,5 +111,13 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 }
