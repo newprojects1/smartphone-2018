@@ -50,22 +50,22 @@ public class ProductController {
         } else {
             products = productService.findAll(pageable);
         }
-        ModelAndView modelAndView1 = new ModelAndView("/product/list");
-        modelAndView1.addObject("products", products);
-        return modelAndView1;
+        ModelAndView modelAndView = new ModelAndView("/product/list");
+        modelAndView.addObject("products", products);
+        return modelAndView;
     }
 
     //    create
     @GetMapping("/create-product")
     public ModelAndView showCreateForm() {
-        ModelAndView modelAndView1 = new ModelAndView("/product/create");
-        modelAndView1.addObject("productForm", new ProductForm());
-        return modelAndView1;
+        ModelAndView modelAndView = new ModelAndView("/product/create");
+        modelAndView.addObject("productForm", new ProductForm());
+        return modelAndView;
     }
 
     @PostMapping("/create-product")
     public ModelAndView saveProduct(@ModelAttribute("productForm") ProductForm productForm) {
-        ModelAndView modelAndView1 = new ModelAndView("/product/create");
+        ModelAndView modelAndView = new ModelAndView("/product/create");
 
         try {
             String randomCode = UUID.randomUUID().toString();
@@ -92,8 +92,8 @@ public class ProductController {
             e.printStackTrace();
         }
 
-        modelAndView1.addObject("productForm", new ProductForm());
-        modelAndView1.addObject("message", "New product created successfully");
-        return modelAndView1;
+        modelAndView.addObject("productForm", new ProductForm());
+        modelAndView.addObject("message", "New product created successfully");
+        return modelAndView;
     }
 }
