@@ -68,4 +68,18 @@ public class ProductController {
         modelAndView1.addObject("message", "New customer created successfully");
         return modelAndView1;
     }
+
+    //    edit
+    @GetMapping("/edit-product/{id}")
+    public ModelAndView showEditForm(@PathVariable Long id) {
+        Product product = productService.findById(id);
+        if (product != null) {
+            ModelAndView modelAndView1 = new ModelAndView("/product/edit");
+            modelAndView1.addObject("product", product);
+            return modelAndView1;
+        } else {
+            ModelAndView modelAndView1 = new ModelAndView("/product/error.404");
+            return modelAndView1;
+        }
+    }
 }

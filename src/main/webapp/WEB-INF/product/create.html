@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>CRERATE NEW PRODUCT</title>
+    <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+    <a href="/products">Return product list</a>
+    <h1>CREATE NEW PRODUCT</h1>
+    <form th:action="@{/create-product}" th:object="${product}" method="post">
+        <div class="col-lg-12 form-group">
+            <label>Name:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{name}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Category:</label>
+            <select th:field="*{category}" class="col-lg-10 form-control">
+                <option th:each="category:${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}">
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Memory:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{memory}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Capacity:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{capacity}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Producer:</label>
+            <select th:field="*{producer}" class="col-lg-10 form-control">
+                <option th:each="producer:${producers}"
+                        th:value="${producer.id}"
+                        th:text="${producer.name}">
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Photo:</label>
+            <input type="file" class="col-lg-10 form-group" th:field="*{image}" placeholder="Choose">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Stock:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{quantity}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Detail:</label>
+            <textarea type="text" class="col-lg-10 form-control" style="height: 500px" th:field="*{detail}"></textarea>
+        </div>
+        <div class="col-lg-12 form-group">
+            <button class="btn btn-info" type="submit">Add</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
