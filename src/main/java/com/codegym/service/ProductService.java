@@ -15,5 +15,5 @@ public interface ProductService {
 
     Page<Product> findAll(Pageable pageable);
 
-    Page<Product> findAllByNameContainingOrCodeContainingOrProducer(String name, String code, String producer, Pageable pageable);
+    Page<Product> findAllByNameContainingOrCodeContaining(String name, String code, Pageable pageable);
 }

@@ -46,7 +46,7 @@ public class ProductController {
     public ModelAndView listProducts(@RequestParam("s") Optional<String> s, Pageable pageable) {
         Page<Product> products;
         if (s.isPresent()) {
-            products = productService.findAllByNameContainingOrCodeContainingOrProducer(s.get(), s.get(), s.get(), pageable);
+            products = productService.findAllByNameContainingOrCodeContaining(s.get(), s.get(), pageable);
         } else {
             products = productService.findAll(pageable);
         }
