@@ -27,7 +27,7 @@ public class Product {
 
     private int memory;
 
-    private int capacity;
+    private int storage;
 
     private int quantity;
 
@@ -89,12 +89,12 @@ public class Product {
         this.memory = memory;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getStorage() {
+        return storage;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setStorage(int storage) {
+        this.storage = storage;
     }
 
     public String getCode() {

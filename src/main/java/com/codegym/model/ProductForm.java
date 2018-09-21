@@ -12,14 +12,14 @@ public class ProductForm {
     private MultipartFile image;
     private double price;
     private int memory;
-    private int capacity;
+    private int storage;
     private int quantity;
     private String detail;
 
     public ProductForm() {
     }
 
-    public ProductForm(Long id, String code, String name, Producer producer, Category category, String imageUrl, MultipartFile image, double price, int memory, int capacity, int quantity, String detail) {
+    public ProductForm(Long id, String code, String name, Producer producer, Category category, String imageUrl, MultipartFile image, double price, int memory, int storage, int quantity, String detail) {
         this.id = id;
         this.code = code;
         this.name = name;
@@ -29,7 +29,7 @@ public class ProductForm {
         this.image = image;
         this.price = price;
         this.memory = memory;
-        this.capacity = capacity;
+        this.storage = storage;
         this.quantity = quantity;
         this.detail = detail;
     }
@@ -106,12 +106,12 @@ public class ProductForm {
         this.memory = memory;
     }
 
-    public int getCapacity() {
-        return capacity;
+    public int getStorage() {
+        return storage;
     }
 
-    public void setCapacity(int capacity) {
-        this.capacity = capacity;
+    public void setStorage(int storage) {
+        this.storage = storage;
     }
 
     public int getQuantity() {
