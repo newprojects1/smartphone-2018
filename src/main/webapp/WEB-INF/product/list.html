@@ -44,8 +44,8 @@
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
                 <td>
-                    <a th:href="@{/edit-product/__${product.id}__ }">Edit</a>
-                    <a th:href="@{/delete-product/__${product.id}__ }">Delete</a>
+                    <a th:href="@{/edit-product/__${product.id}__ }" class="btn btn-info">Edit</a>
+                    <a th:href="@{/delete-product/__${product.id}__ }" class="btn btn-info">Delete</a>
                 </td>
             </tr>
         </th:block>
