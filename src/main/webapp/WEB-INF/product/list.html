@@ -4,16 +4,41 @@
     <meta charset="UTF-8">
     <title>PRODUCT LIST</title>
     <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <style>
+        #menu {
+            margin-top: 10px;
+        }
+
+        #menu ul {
+            list-style-type: none;
+        }
+
+        #menu li {
+            display: inline-block;
+            padding-right: 20px;
+        }
+
+        #search {
+            float: right;
+        }
+    </style>
 
 </head>
 <body>
 <div class="container">
     <h1>PRODUCT LIST</h1>
     <a href="/admin/create-product">Add new product</a>
-    <form>
-        <input name="s" type="text"/>
-        <input type="submit" value="search">
-    </form>
+    <div id="menu">
+        <ul>
+            <li><a href="/admin/products">Product Manager</a></li>
+            <li><a href="#">Producers</a></li>
+            <li><a href="#">Categories</a></li>
+            <form id="search">
+                <input name="s" type="text"/>
+                <input type="submit" value="search">
+            </form>
+        </ul>
+    </div>
     <table class="table table-hover">
         <thead>
         <tr>
