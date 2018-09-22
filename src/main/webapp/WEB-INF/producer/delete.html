@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DELETE A PRODUCER</title>
+    <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+    <a href="/admin/producers">Return producer list</a>
+    <h1>DELETE A PRODUCER</h1>
+    <form th:action="@{/admin/delete-producer}" th:object="${producer}" method="post">
+        <input th:type="hidden" name="id" th:field="*{id}">
+        <table class="table table-striped">
+            <tr>
+                <th>#</th>
+                <td th:text="${producer.id}"></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td th:text="${producer.name}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" type="submit">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
