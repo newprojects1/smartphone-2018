@@ -31,8 +31,8 @@
     <div id="menu">
         <ul>
             <li><a href="/admin/products">Product Manager</a></li>
-            <li><a href="#">Producers</a></li>
-            <li><a href="#">Categories</a></li>
+            <li><a href="/admin/producers">Producers</a></li>
+            <li><a href="/admin/categories">Categories</a></li>
             <form id="search">
                 <input name="s" type="text"/>
                 <input type="submit" value="search">
@@ -69,8 +69,8 @@
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
                 <td>
-                    <a th:href="@{/admin/edit-product/__${product.id}__ }" class="btn btn-info">Edit</a>
-                    <a th:href="@{/admin/delete-product/__${product.id}__ }" class="btn btn-info">Delete</a>
+                    <a th:href="@{/admin/edit-product/__${product.id}__ }">Edit</a>
+                    <a th:href="@{/admin/delete-product/__${product.id}__ }">Delete</a>
                 </td>
             </tr>
         </th:block>
