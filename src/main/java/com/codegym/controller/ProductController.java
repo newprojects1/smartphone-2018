@@ -165,7 +165,7 @@ public class ProductController {
     }
 
     //    delete
-    @GetMapping("/delete?{id}")
+    @GetMapping("/delete-product/{id}")
     public ModelAndView showDeleteForm(@PathVariable("id") Long id) {
         Product product = productService.findById(id);
         ModelAndView modelAndView;
@@ -178,7 +178,7 @@ public class ProductController {
         return modelAndView;
     }
 
-    @PostMapping("/delete/{id}")
+    @PostMapping("/delete-product/{id}")
     public String deleteProduct(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
         Product product = productService.findById(id);
         if (product != null) {
