@@ -14,6 +14,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -160,5 +161,31 @@ public class ProductController {
         modelAndView.addObject("productForm", productForm);
         modelAndView.addObject("message", "This product has been up to date successfully");
         return modelAndView;
+    }
+
+    //    delete
+    @GetMapping("/delete?{id}")
+    public ModelAndView showDeleteForm(@PathVariable("id") Long id) {
+        Product product = productService.findById(id);
+        ModelAndView modelAndView;
+        if (product != null) {
+            modelAndView = new ModelAndView("/product/delete");
+            modelAndView.addObject("product", product);
+        } else {
+            modelAndView = new ModelAndView("/product/error.404");
+        }
+        return modelAndView;
+    }
+
+    @PostMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Long id, RedirectAttributes redirectAttributes) {
+        Product product = productService.findById(id);
+        if (product != null) {
+            productService.remove(id);
+            redirectAttributes.addFlashAttribute("message", "Product has been deleted successfully");
+            return "redirect:/products";
+        } else {
+            return "/product/error.404";
+        }
     }
 }
