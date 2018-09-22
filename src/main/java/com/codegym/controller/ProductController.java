@@ -22,6 +22,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 @Controller
+@RequestMapping("/admin")
 public class ProductController {
     @Autowired
     private ProductService productService;
@@ -183,7 +184,7 @@ public class ProductController {
         if (product != null) {
             productService.remove(id);
             redirectAttributes.addFlashAttribute("message", "Product has been deleted successfully");
-            return "redirect:/products";
+            return "redirect:/admin/products";
         } else {
             return "/product/error.404";
         }
