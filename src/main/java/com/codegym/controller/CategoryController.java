@@ -58,4 +58,23 @@ public class CategoryController {
         modelAndView.addObject("message", "This product has been up to date successfully");
         return modelAndView;
     }
+
+    @GetMapping("/delete-category/{id}")
+    public ModelAndView showDeleteForm(@PathVariable Long id) {
+        Category category = categoryService.findById(id);
+        if (category != null) {
+            ModelAndView modelAndView = new ModelAndView("/category/delete");
+            modelAndView.addObject("category", category);
+            return modelAndView;
+        } else {
+            ModelAndView modelAndView = new ModelAndView("/category/error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/delete-category")
+    public String deleteCategory(@ModelAttribute("category") Category category) {
+        categoryService.remove(category.getId());
+        return "redirect:/admin/categories";
+    }
 }
