@@ -96,4 +96,69 @@ public class ProductController {
         modelAndView.addObject("message", "New product created successfully");
         return modelAndView;
     }
+
+    //    edit
+    @GetMapping("/edit-product/{id}")
+    public ModelAndView showEditForm(@PathVariable("id") Long id) {
+        Product product = productService.findById(id);
+        ProductForm productForm = new ProductForm();
+
+        productForm.setId(product.getId());
+        productForm.setCode(product.getCode());
+        productForm.setName(product.getName());
+        productForm.setCategory(product.getCategory());
+        productForm.setProducer(product.getProducer());
+        productForm.setPrice(product.getPrice());
+        productForm.setMemory(product.getMemory());
+        productForm.setStorage(product.getStorage());
+        productForm.setQuantity(product.getQuantity());
+        productForm.setDetail(product.getDetail());
+        productForm.setImageUrl(product.getImage());
+
+        ModelAndView modelAndView;
+        if (product != null) {
+            modelAndView = new ModelAndView("/product/edit");
+            modelAndView.addObject("productForm", productForm);
+            return modelAndView;
+        } else {
+            modelAndView = new ModelAndView("/product/error.404");
+            return modelAndView;
+        }
+    }
+
+    @PostMapping("/edit-product/{id}")
+    public ModelAndView updateProduct(@ModelAttribute("productForm") ProductForm productForm, @PathVariable("id") Long id) {
+        ModelAndView modelAndView = new ModelAndView("/product/edit");
+        Product product = productService.findById(id);
+
+        if (!productForm.getImage().isEmpty()) {
+            StorageUtils.removeFeature(product.getImage());
+            String randomCode = UUID.randomUUID().toString();
+            String originFilename = productForm.getImage().getOriginalFilename();
+            String randomName = randomCode + StorageUtils.getFileExtension(originFilename);
+            try {
+                productForm.getImage().transferTo(new File(StorageUtils.FEATURE_LOCATION + "/" + randomName));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            product.setImage(randomName);
+            productForm.setImageUrl(randomName);
+        }
+        product.setCode(productForm.getCode());
+        product.setName(productForm.getName());
+        product.setCategory(productForm.getCategory());
+        product.setProducer(productForm.getProducer());
+        product.setPrice(productForm.getPrice());
+        product.setMemory(productForm.getMemory());
+        product.setStorage(productForm.getStorage());
+        product.setQuantity(productForm.getQuantity());
+        product.setDetail(productForm.getDetail());
+
+        productService.save(product);
+        product.setCode("SS-" + product.getId());
+
+        modelAndView.addObject("productForm", productForm);
+        modelAndView.addObject("message", "This product has been up to date successfully");
+        return modelAndView;
+    }
 }
