@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT A PRODUCT</title>
+    <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+    <a href="/admin/products">Return product list</a>
+    <h1>EDIT A PRODUCT</h1>
+    <th:block th:if="${message}">
+        <span th:text="${message}"></span>
+    </th:block>
+    <form th:action="@{/admin/edit-product}" th:object="${productForm}" method="post" enctype="multipart/form-data">
+        <div class="col-lg-12 form-group">
+            <label>Name:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{name}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Memory:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{memory}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Storage:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{storage}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Category:</label>
+            <select th:field="*{category}" class="col-lg-10 form-control">
+                <option th:each="category:${categories}"
+                        th:value="${category.id}"
+                        th:text="${category.name}">
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Producer:</label>
+            <select th:field="*{producer}" class="col-lg-10 form-control">
+                <option th:each="producer:${producers}"
+                        th:value="${producer.id}"
+                        th:text="${producer.name}">
+                </option>
+            </select>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Photo:</label>
+            <input type="hidden" class="col-lg-10 form-control" th:field="*{image}" placeholder="Choose">
+            <img th:src="@{/features/__${productForm.imageUrl}__}" height="100" width="100">
+            <label><input type="file" th:field="*{image}"></label>
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Price:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{price}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Stock:</label>
+            <input type="text" class="col-lg-10 form-control" th:field="*{quantity}">
+        </div>
+        <div class="col-lg-12 form-group">
+            <label>Detail:</label>
+            <textarea type="text" class="col-lg-10 form-control" style="height: 500px" th:field="*{detail}"></textarea>
+        </div>
+        <div class="col-lg-12 form-group">
+            <button class="btn btn-info" type="submit">Edit</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
