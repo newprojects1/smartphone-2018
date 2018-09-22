@@ -13,4 +13,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class CategoryController {
     @Autowired
     private CategoryService categoryService;
+
+    @GetMapping("/categories")
+    public ModelAndView listCategories() {
+        Iterable<Category> categories = categoryService.findAll();
+        ModelAndView modelAndView = new ModelAndView("/category/list");
+        modelAndView.addObject("categories", categories);
+        return modelAndView;
+    }
 }
