@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>DELETE A PRODUCT</title>
+    <link rel="stylesheet" href="../../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+
+</head>
+<body>
+<div class="container">
+    <a href="/admin/products">Return product list</a>
+    <h1>DELETE A PRODUCT</h1>
+    <form th:action="@{/admin/delete-product}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <table class="table table-striped">
+            <tr>
+                <th>Product Code</th>
+                <td th:text="${product.code}"></td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td th:text="${product.name}"></td>
+            </tr>
+            <tr>
+                <th>Memory</th>
+                <td th:text="${product.memory}"></td>
+            </tr>
+            <tr>
+                <th>Storage</th>
+                <td th:text="${product.storage}"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td th:text="${product.category.name}"></td>
+            </tr>
+            <tr>
+                <th>Producer</th>
+                <td th:text="${product.producer.name}"></td>
+            </tr>
+            <tr>
+                <th>Thumbnail</th>
+                <td>
+                    <img th:src="@{/features/__${product.getImage()}__}" height="100" width="100">
+                </td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td th:text="${product.price}"></td>
+            </tr>
+            <tr>
+                <th>Stock</th>
+                <td th:text="${product.quantity}"></td>
+            </tr>
+            <tr>
+                <th>Detail</th>
+                <td th:text="${product.detail}"></td>
+            </tr>
+            <tr>
+                <td>
+                    <button class="btn btn-info" type="submit">Delete</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>
