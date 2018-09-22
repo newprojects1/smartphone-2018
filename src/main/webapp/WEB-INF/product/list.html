@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h1>PRODUCT LIST</h1>
-    <a href="/create-product">Add new product</a>
+    <a href="/admin/create-product">Add new product</a>
     <form>
         <input name="s" type="text"/>
         <input type="submit" value="search">
@@ -44,17 +44,17 @@
                 <td th:text="${product.price}"></td>
                 <td th:text="${product.quantity}"></td>
                 <td>
-                    <a th:href="@{/edit-product/__${product.id}__ }" class="btn btn-info">Edit</a>
-                    <a th:href="@{/delete-product/__${product.id}__ }" class="btn btn-info">Delete</a>
+                    <a th:href="@{/admin/edit-product/__${product.id}__ }" class="btn btn-info">Edit</a>
+                    <a th:href="@{/admin/delete-product/__${product.id}__ }" class="btn btn-info">Delete</a>
                 </td>
             </tr>
         </th:block>
         </tbody>
     </table>
     <div>
-        <a th:href="@{'/products'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+        <a th:href="@{'/admin/products'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
         <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-        <a th:href="@{'/products'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+        <a th:href="@{'/admin/products'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
     </div>
 </div>
 </body>
