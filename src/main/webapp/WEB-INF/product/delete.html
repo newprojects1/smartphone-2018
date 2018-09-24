@@ -10,7 +10,8 @@
 <div class="container">
     <a href="/admin/products">Return product list</a>
     <h1>DELETE A PRODUCT</h1>
-    <form th:action="@{/admin/delete-product}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <form th:action="@{/admin/delete-product/__${product.id}__}" th:object="${product}" method="post" enctype="multipart/form-data">
+        <input th:type="hidden" name="id" th:field="*{id}">
         <table class="table table-striped">
             <tr>
                 <th>Product Code</th>
