@@ -158,6 +158,7 @@ public class ProductController {
 
         productService.save(product);
         product.setCode("SS-" + product.getId());
+        productService.save(product);
 
         modelAndView.addObject("productForm", productForm);
         modelAndView.addObject("message", "This product has been up to date successfully");
