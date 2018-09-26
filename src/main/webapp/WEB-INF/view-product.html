@@ -15,10 +15,10 @@
             crossorigin="anonymous"></script>
 
     <style>
-        #title {
+        .title {
             text-align: center;
-            margin-top: 15px;
-            margin-bottom: 5px;
+            margin-top: 20px;
+            margin-bottom: 10px;
         }
     </style>
 
@@ -38,7 +38,7 @@
         </div>
     </div>
     <div class="row">
-        <div id="title">Thông số kỹ thuật</div>
+        <div class="title col-md-12"><strong>Specification</strong></div>
         <table class="table table-striped">
             <tr>
                 <th>Name</th>
@@ -62,9 +62,6 @@
             </tr>
         </table>
         <a th:text="${product.detail}"></a>
-    </div>
-    <div class="row">
-        <a th:text="${product.producer.name}"></a>
     </div>
 </div>
 </body>
