@@ -39,14 +39,6 @@ public class HomeController {
         return producerService.findAll();
     }
 
-//    @GetMapping("/")
-//    public ModelAndView listHome(Pageable pageable) {
-//        Page<Product> products = productService.findAll(pageable);
-//        ModelAndView modelAndView = new ModelAndView("/home");
-//        modelAndView.addObject("products", products);
-//        return modelAndView;
-//    }
-
     @GetMapping("/")
     public ModelAndView listCustomers(@RequestParam("s") Optional<String> s, Pageable pageable){
         Page<Product> products;
