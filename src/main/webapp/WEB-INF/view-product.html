@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>VIEW PRODUCT</title>
+    <link rel="stylesheet" href="../resources/bootstrap-4.0.0-dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+
+    <style>
+        #title {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 5px;
+        }
+    </style>
+
+</head>
+<body>
+<div class="container" th:action="@{/view-product/__${product.id}__}" th:object="${product}" method="get"
+     enctype="multipart/form-data">
+    <div><a href="/">Back</a></div>
+    <div class="row">
+        <div class="col-md-5">
+            <img th:src="@{/features/__${product.getImage()}__}" height="400" width="400">
+        </div>
+        <div class="col-md-7">
+            <h1>
+                <span th:text="${product.name}"></span>
+            </h1>
+        </div>
+    </div>
+    <div class="row">
+        <div id="title">Thông số kỹ thuật</div>
+        <table class="table table-striped">
+            <tr>
+                <th>Name</th>
+                <td th:text="${product.name}"></td>
+            </tr>
+            <tr>
+                <th>Memory</th>
+                <td th:text="${product.memory}"></td>
+            </tr>
+            <tr>
+                <th>Storage</th>
+                <td th:text="${product.storage}"></td>
+            </tr>
+            <tr>
+                <th>Category</th>
+                <td th:text="${product.category.name}"></td>
+            </tr>
+            <tr>
+                <th>Producer</th>
+                <td th:text="${product.producer.name}"></td>
+            </tr>
+        </table>
+        <a th:text="${product.detail}"></a>
+    </div>
+    <div class="row">
+        <a th:text="${product.producer.name}"></a>
+    </div>
+</div>
+</body>
+</html>
