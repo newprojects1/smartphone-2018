@@ -51,6 +51,10 @@
         #sortBy {
             margin-top: 15px;
         }
+
+        #pageable {
+            margin-left: 49%;
+        }
     </style>
 </head>
 <body>
@@ -178,6 +182,11 @@
                 </div>
 
             </th:block>
+        </div>
+        <div id="pageable">
+            <a th:href="@{'/'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+            <a th:href="@{'/'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
         </div>
     </div>
 </div>
