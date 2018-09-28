@@ -19,7 +19,7 @@
             margin-left: 350px;
         }
 
-        #list-product {
+        .list {
             margin-top: 15px;
         }
 
@@ -52,7 +52,7 @@
             margin-top: 15px;
         }
 
-        #pageable {
+        .pageable {
             margin-left: 49%;
         }
     </style>
@@ -66,7 +66,6 @@
                  height="200" width="300">
         </div>
     </div>
-    <div class="row">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
             <a class="navbar-brand" href="#">LAPTOP WORLD</a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -114,8 +113,6 @@
                 </form>
             </div>
         </nav>
-    </div>
-    <div class="row">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
                 <li data-target="#carouselExampleIndicators" data-slide-to="0"></li>
@@ -154,7 +151,6 @@
                 <span class="sr-only">Next</span>
             </a>
         </div>
-    </div>
     <div class="row">
         <div id="sortBy">
             <select onchange="location.href=this.value">
@@ -166,9 +162,8 @@
         </div>
     </div>
     <div class="row">
-        <div id="list-product">
             <th:block th:each="product:${products}">
-                <div class="card border-primary col-lg-3">
+                <div class="list card border-primary col-lg-3">
                     <img class="card-img-top" th:src="@{/features/__${product.image}__}">
                     <div class="card-body">
                         <h1 class="card-title">
@@ -180,14 +175,12 @@
                         <a href="#" class="btn btn-primary ">Buy now</a>
                     </div>
                 </div>
-
             </th:block>
-        </div>
-        <div id="pageable">
-            <a th:href="@{'/'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
-            <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
-            <a th:href="@{'/'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
-        </div>
+    </div>
+    <div class="row pageable">
+        <a th:href="@{'/'(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+        <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+        <a th:href="@{'/'(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
     </div>
 </div>
 </body>
